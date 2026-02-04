@@ -10,8 +10,8 @@ export default defineNuxtRouteMiddleware(async (to: any) => {
       headers: token ? { Authorization: `Bearer ${token}` } as any : undefined,
     })
     const u = data.value
-    const isMerchant = !!(u && (u.is_merchant || u.role === 'merchant' || u.roles?.includes?.('merchant') || u.groups?.includes?.('merchant')))
-    if (!isMerchant) return navigateTo(`/login?redirect=${encodeURIComponent(to.fullPath)}`)
+    const isDriver = !!(u && (u.is_driver || u.role === 'driver' || u.roles?.includes?.('driver') || u.groups?.includes?.('driver')))
+    if (!isDriver) return navigateTo(`/login?redirect=${encodeURIComponent(to.fullPath)}`)
   } catch {
     return navigateTo(`/login?redirect=${encodeURIComponent(to.fullPath)}`)
   }

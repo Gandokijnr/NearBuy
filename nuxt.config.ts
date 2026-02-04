@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     public: {
       apiBase: (globalThis as any)?.process?.env?.NUXT_PUBLIC_API_BASE || '',
       wsBase: (globalThis as any)?.process?.env?.NUXT_PUBLIC_WS_BASE || '',
-      stripePk: (globalThis as any)?.process?.env?.NUXT_PUBLIC_STRIPE_PK || ''
+      stripePk: (globalThis as any)?.process?.env?.NUXT_PUBLIC_STRIPE_PK || '',
+      googleMapsKey: (globalThis as any)?.process?.env?.NUXT_PUBLIC_GOOGLE_MAPS_KEY || ''
     }
   },
   vite: {

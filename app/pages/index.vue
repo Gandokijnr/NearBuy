@@ -67,9 +67,7 @@
             <!-- Text Content -->
             <div class="space-y-5 md:space-y-6 text-center md:text-left fade-in">
               <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
-                <span class="text-[#FF7A00]">Your Neighborhood,</span>
-                <br/>
-                <span class="text-[#F2F2F2]">Synced to Your Schedule.</span>
+                Stores in <span class="text-[#FF7A00]">your area</span> that are ready to deliver.
               </h1>
               <p class="text-base sm:text-lg md:text-xl text-[#F2F2F2]/80 max-w-xl mx-auto md:mx-0">
                 NearBuy bridges the gap between your busy day and local shelves. Real-time shopping from the stores you trust, delivered to your door in minutes.
@@ -91,7 +89,7 @@
               <!-- Trust Indicators -->
               <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 pt-4 text-xs sm:text-sm text-[#F2F2F2]/60">
                 <div class="flex items-center gap-2">
-                  <span class="h-2 w-2 rounded-full bg-[#FF7A00] pulse-glow"></span>
+                  <span class="h-2 w-2 rounded-full bg-[#FF7A00] pulse-glow-subtle"></span>
                   <span>Real-time sync</span>
                 </div>
                 <div class="flex items-center gap-2">
@@ -124,26 +122,39 @@
                       </div>
                     </div>
 
-                    <!-- Radar visualization -->
+                    <!-- Radar visualization - Subtle and calm -->
                     <div class="absolute inset-0 flex items-center justify-center">
                       <div class="relative h-52 sm:h-60 w-52 sm:w-60">
-                        <!-- Radar rings -->
-                        <div class="absolute inset-0 rounded-full border border-[#FF7A00]/40"></div>
-                        <div class="absolute inset-4 rounded-full border border-[#FF7A00]/30"></div>
-                        <div class="absolute inset-8 rounded-full border border-[#FF7A00]/20"></div>
+                        <!-- Static radar rings -->
+                        <div class="absolute inset-0 rounded-full border border-[#FF7A00]/30"></div>
+                        <div class="absolute inset-4 rounded-full border border-[#FF7A00]/20"></div>
+                        <div class="absolute inset-8 rounded-full border border-[#FF7A00]/15"></div>
                         <div class="absolute inset-12 rounded-full border border-[#FF7A00]/10"></div>
                         
-                        <!-- Center point (user location) -->
+                        <!-- Center map pin with subtle pulse -->
                         <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                          <div class="h-3 w-3 rounded-full bg-[#FF7A00] shadow-[0_0_20px_4px_rgba(255,122,0,0.35)]"></div>
-                          <div class="absolute inset-0 h-3 w-3 rounded-full bg-[#FF7A00] radar-ping"></div>
+                          <!-- Single gentle pulse ring -->
+                          <div class="absolute inset-0 -m-6">
+                            <div class="radar-pulse-ring"></div>
+                          </div>
+                          
+                          <!-- Map pin icon -->
+                          <div class="relative z-10">
+                            <svg class="h-8 w-8 sm:h-10 sm:w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 22s6-5.6 6-10a6 6 0 1 0-12 0c0 4.4 6 10 6 10Z" fill="#FF7A00" fill-opacity="0.9"/>
+                              <path d="M12 22s6-5.6 6-10a6 6 0 1 0-12 0c0 4.4 6 10 6 10Z" stroke="#FF7A00" stroke-width="1.5"/>
+                              <circle cx="12" cy="12" r="2" fill="#F2F2F2"/>
+                            </svg>
+                            <!-- Gentle scanning indicator -->
+                            <div class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-[#FF7A00] scanning-dot"></div>
+                          </div>
                         </div>
 
-                        <!-- Store markers -->
-                        <span class="absolute left-8 top-16 h-2.5 w-2.5 rounded-full bg-[#FF7A00] shadow-[0_0_12px_2px_rgba(255,122,0,0.45)] pulse-glow"></span>
-                        <span class="absolute right-8 top-32 h-2.5 w-2.5 rounded-full bg-[#FF7A00] shadow-[0_0_12px_2px_rgba(255,122,0,0.35)] pulse-glow" style="animation-delay: 0.5s;"></span>
-                        <span class="absolute left-16 bottom-16 h-2 w-2 rounded-full bg-[#F2F2F2]/70"></span>
-                        <span class="absolute right-12 bottom-24 h-2 w-2 rounded-full bg-[#F2F2F2]/60"></span>
+                        <!-- Store markers - static with subtle glow -->
+                        <span class="absolute left-8 top-16 h-2.5 w-2.5 rounded-full bg-[#FF7A00] shadow-[0_0_8px_1px_rgba(255,122,0,0.3)] pulse-glow-subtle"></span>
+                        <span class="absolute right-8 top-32 h-2.5 w-2.5 rounded-full bg-[#FF7A00] shadow-[0_0_8px_1px_rgba(255,122,0,0.25)] pulse-glow-subtle" style="animation-delay: 0.7s;"></span>
+                        <span class="absolute left-16 bottom-16 h-2 w-2 rounded-full bg-[#F2F2F2]/60"></span>
+                        <span class="absolute right-12 bottom-24 h-2 w-2 rounded-full bg-[#F2F2F2]/50"></span>
                       </div>
                     </div>
 
@@ -433,38 +444,58 @@ watch(menuOpen, (open) => {
   background: #0A0F1E;
 }
 
-
-/* Pulse animation for dots */
-@keyframes pulse-glow {
+/* Subtle pulse animation */
+@keyframes pulse-glow-subtle {
   0%, 100% { 
-    opacity: 1;
+    opacity: 0.8;
     transform: scale(1);
   }
   50% { 
-    opacity: 0.6;
-    transform: scale(1.1);
+    opacity: 0.4;
+    transform: scale(1.05);
   }
 }
 
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+.pulse-glow-subtle {
+  animation: pulse-glow-subtle 3s ease-in-out infinite;
 }
 
-/* Radar animation */
-@keyframes radar-ping {
+/* Single gentle radar pulse */
+@keyframes radar-pulse {
   0% {
-    transform: scale(1);
-    opacity: 1;
+    transform: scale(0.8);
+    opacity: 0.6;
   }
   100% {
-    transform: scale(2);
+    transform: scale(2.5);
     opacity: 0;
   }
 }
 
-.radar-ping {
-  animation: radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+.radar-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 122, 0, 0.4);
+  animation: radar-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Gentle scanning dot */
+@keyframes scanning-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+}
+
+.scanning-dot {
+  animation: scanning-pulse 2s ease-in-out infinite;
+}
+
 
 /* Smooth transitions */
 .transition-smooth {
@@ -521,11 +552,11 @@ watch(menuOpen, (open) => {
 
 /* Floating action button */
 .fab {
-  box-shadow: 0 8px 24px rgba(204, 255, 0, 0.25), 0 0 40px rgba(204, 255, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(255, 122, 0, 0.25), 0 0 40px rgba(255, 122, 0, 0.15);
 }
 
 .fab:active {
-  box-shadow: 0 4px 12px rgba(204, 255, 0, 0.2), 0 0 20px rgba(204, 255, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2), 0 0 20px rgba(255, 122, 0, 0.1);
 }
 
 /* Intersection observer fade-in */
