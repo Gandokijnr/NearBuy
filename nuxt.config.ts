@@ -6,7 +6,14 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   css: ['./assets/css/main.css'],
   ssr: true,
-  modules: ['@nuxt/hints', '@nuxt/image'],
+  modules: ['@nuxt/hints', '@nuxt/image', '@pinia/nuxt'],
+  runtimeConfig: {
+    public: {
+      apiBase: (globalThis as any)?.process?.env?.NUXT_PUBLIC_API_BASE || '',
+      wsBase: (globalThis as any)?.process?.env?.NUXT_PUBLIC_WS_BASE || '',
+      stripePk: (globalThis as any)?.process?.env?.NUXT_PUBLIC_STRIPE_PK || ''
+    }
+  },
   vite: {
     plugins: [
       tailwindcss(),

@@ -29,7 +29,7 @@
           <nav class="hidden md:flex items-center gap-4">
             <NuxtLink to="#features" class="px-3 py-2 rounded-full text-sm text-[#F2F2F2]/80 hover:text-[#F2F2F2] hover:bg-[#FF7A00]/10 transition-colors">Features</NuxtLink>
             <NuxtLink to="#partners" class="px-3 py-2 rounded-full text-sm text-[#F2F2F2]/80 hover:text-[#F2F2F2] hover:bg-[#FF7A00]/10 transition-colors">Partners</NuxtLink>
-            <NuxtLink to="#explore" class="inline-flex items-center gap-2 rounded-full bg-[#FF7A00] px-5 py-2.5 text-sm font-semibold text-[#F2F2F2] hover:scale-105 transition-transform">
+            <NuxtLink to="/discover" class="inline-flex items-center gap-2 rounded-full bg-[#FF7A00] px-5 py-2.5 text-sm font-semibold text-[#F2F2F2] hover:scale-105 transition-transform">
               Explore Nearby
             </NuxtLink>
           </nav>
@@ -54,7 +54,7 @@
         <nav class="px-4 py-6 space-y-4">
           <NuxtLink to="#features" @click="closeMenu" class="block px-4 py-4 rounded-xl text-base font-medium tap-target bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 ring-1 ring-[#FF7A00]/20 text-[#F2F2F2]">Features</NuxtLink>
           <NuxtLink to="#partners" @click="closeMenu" class="block px-4 py-4 rounded-xl text-base font-medium tap-target bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 ring-1 ring-[#FF7A00]/20 text-[#F2F2F2]">Partners</NuxtLink>
-          <NuxtLink to="#explore" @click="closeMenu" class="block px-4 py-4 rounded-xl text-base font-medium tap-target bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 ring-1 ring-[#FF7A00]/20 text-[#F2F2F2]">Explore Nearby</NuxtLink>
+          <NuxtLink to="/discover" @click="closeMenu" class="block px-4 py-4 rounded-xl text-base font-medium tap-target bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 ring-1 ring-[#FF7A00]/20 text-[#F2F2F2]">Explore Nearby</NuxtLink>
         </nav>
       </div>
     </header>
@@ -77,12 +77,12 @@
               
               <!-- CTA Buttons -->
               <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2" id="explore">
-                <a href="#features" class="btn-primary inline-flex items-center justify-center gap-2 rounded-full bg-[#FF7A00] px-6 py-3.5 sm:py-4 text-[#F2F2F2] font-semibold shadow-lg transition-smooth tap-target">
+                <NuxtLink to="/discover" class="btn-primary inline-flex items-center justify-center gap-2 rounded-full bg-[#FF7A00] px-6 py-3.5 sm:py-4 text-[#F2F2F2] font-semibold shadow-lg transition-smooth tap-target">
                   <span>Explore Nearby Stores</span>
                   <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                   </svg>
-                </a>
+                </NuxtLink>
                 <a href="#partners" class="inline-flex items-center justify-center gap-2 rounded-full glass px-6 py-3.5 sm:py-4 text-[#F2F2F2]/90 font-medium hover:bg-[#F2F2F2]/10 transition-smooth tap-target">
                   Become a Partner
                 </a>
@@ -278,12 +278,12 @@
     <!-- Floating Action Button (Mobile Only) -->
     <div class="fixed bottom-0 left-0 right-0 md:hidden z-40 safe-bottom" v-show="!menuOpen">
       <div class="px-4 pb-4">
-        <a href="#features" id="cta" class="fab btn-primary flex items-center justify-center w-full rounded-full bg-[#FF7A00] px-6 py-4 text-[#F2F2F2] font-bold text-base transition-smooth tap-target">
+        <NuxtLink to="/discover" id="cta" class="fab btn-primary flex items-center justify-center w-full rounded-full bg-[#FF7A00] px-6 py-4 text-[#F2F2F2] font-bold text-base transition-smooth tap-target">
           <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
           </svg>
           Order Now
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </div>
