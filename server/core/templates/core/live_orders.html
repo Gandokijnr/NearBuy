@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Live Orders</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #0A0F1E; color: #F2F2F2; }
+    .wrap { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+    .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .muted { color: rgba(255,255,255,0.7); font-size: 12px; }
+    .pill { display: inline-block; background: #FF7A00; color: #0A0F1E; border-radius: 999px; padding: 4px 10px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Live Orders</h1>
+    <div class="muted" id="status">Connecting...</div>
+    <div id="list" style="margin-top: 16px;"></div>
+  </div>
+
+  <script>
+    (function() {
+      function wsUrl(path) {
+        const proto = (location.protocol === 'https:') ? 'wss' : 'ws';
+        return proto + '://' + location.host + path;
+      }
+      const list = document.getElementById('list');
+      const status = document.getElementById('status');
+      let socket = null;
+
+      function addOrderCard(order) {
+        const el = document.createElement('div');
+        el.className = 'card';
+        const id = order.id || '—';
+        const store = order.store_name || (order.store && order.store.name) || 'Store';
+        const total = order.total || order.amount_total || order.total_amount || 0;
+        el.innerHTML = `
+          <div class="row">
+            <div><strong>#${id}</strong> — ${store}</div>
+            <div class="pill">$${Number(total).toFixed(2)}</div>
+          </div>
+          <div class="muted">${new Date().toLocaleString()}</div>
+        `;
+        list.prepend(el);
+      }
+
+      function connect() {
+        status.textContent = 'Connecting...';
+        socket = new WebSocket(wsUrl('/ws/merchant/orders/'));
+        socket.onopen = function() { status.textContent = 'Connected'; };
+        socket.onclose = function() { status.textContent = 'Disconnected. Reconnecting...'; setTimeout(connect, 1000); };
+        socket.onerror = function() { status.textContent = 'Error. Reconnecting...'; try { socket.close(); } catch(_) {}; };
+        socket.onmessage = function(ev) {
+          let data = null;
+          try { data = JSON.parse(ev.data); } catch(_) { return; }
+          if (data && data.order) addOrderCard(data.order); else addOrderCard(data);
+        };
+      }
+      connect();
+    })();
+  </script>
+</body>
+</html>
